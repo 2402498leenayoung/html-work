@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타자기</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .typewriter {
+            width: 50%;
+            background: #fff;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header p {
+            margin: 5px 0;
+        }
+
+        .keyboard {
+            margin-top: 20px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .key {
+            padding: 15px;
+            text-align: center;
+            background-color: lightgray;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .key:hover {
+            background-color: #ccc;
+        }
+
+        .row1 .key { background-color: #ffcccb; }
+        .row2 .key { background-color: #cce7ff; }
+        .row3 .key { background-color: #d4f7b6; }
+        .row4 .key { background-color: #fff6c7; }
+
+        .display {
+            background-color: #f7f7f7;
+            padding: 10px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            min-height: 50px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .label-paper {
+            background-color: #e0e0e0;
+            padding: 10px;
+            border-radius: 5px;
+            display: block;
+            margin: 20px 0;
+        }
+
+        .active {
+            background-color: #e74c3c !important;
+        }
+    </style>
+</head>
+<body>
+
+<div class="typewriter">
+    <div class="header">
+        <p><strong>제작자:</strong>이나영</p>
+        <p><strong>학번:</strong>2402498</p>
+        <p><strong>소속:</strong>한양여대 빅데이터과</p>
+    </div>
+
+    <div class="display" id="display"></div>
+    <label class="label-paper" id="label-paper"></label>
+
+    <div class="keyboard">
+        <div class="row row1">
+            <div class="key" id="key-1" onclick="typeKey('1')">1</div>
+            <div class="key" id="key-2" onclick="typeKey('2')">2</div>
+            <div class="key" id="key-3" onclick="typeKey('3')">3</div>
+            <div class="key" id="key-4" onclick="typeKey('4')">4</div>
+            <div class="key" id="key-5" onclick="typeKey('5')">5</div>
+            <div class="key" id="key-6" onclick="typeKey('6')">6</div>
+            <div class="key" id="key-7" onclick="typeKey('7')">7</div>
+            <div class="key" id="key-8" onclick="typeKey('8')">8</div>
+            <div class="key" id="key-9" onclick="typeKey('9')">9</div>
+            <div class="key" id="key-0" onclick="typeKey('0')">0</div>
+        </div>
+
+        <div class="row row2">
+            <div class="key" id="key-q" onclick="typeKey('q')">q</div>
+            <div class="key" id="key-w" onclick="typeKey('w')">w</div>
+            <div class="key" id="key-e" onclick="typeKey('e')">e</div>
+            <div class="key" id="key-r" onclick="typeKey('r')">r</div>
+            <div class="key" id="key-t" onclick="typeKey('t')">t</div>
+            <div class="key" id="key-y" onclick="typeKey('y')">y</div>
+            <div class="key" id="key-u" onclick="typeKey('u')">u</div>
+            <div class="key" id="key-i" onclick="typeKey('i')">i</div>
+            <div class="key" id="key-o" onclick="typeKey('o')">o</div>
+            <div class="key" id="key-p" onclick="typeKey('p')">p</div>
+        </div>
+
+        <div class="row row3">
+            <div class="key" id="key-a" onclick="typeKey('a')">a</div>
+            <div class="key" id="key-s" onclick="typeKey('s')">s</div>
+            <div class="key" id="key-d" onclick="typeKey('d')">d</div>
+            <div class="key" id="key-f" onclick="typeKey('f')">f</div>
+            <div class="key" id="key-g" onclick="typeKey('g')">g</div>
+            <div class="key" id="key-h" onclick="typeKey('h')">h</div>
+            <div class="key" id="key-j" onclick="typeKey('j')">j</div>
+            <div class="key" id="key-k" onclick="typeKey('k')">k</div>
+            <div class="key" id="key-l" onclick="typeKey('l')">l</div>
+            <div class="key" id="key-semicolon" onclick="typeKey(';')">;</div>
+        </div>
+
+        <div class="row row4">
+            <div class="key" id="key-z" onclick="typeKey('z')">z</div>
+            <div class="key" id="key-x" onclick="typeKey('x')">x</div>
+            <div class="key" id="key-c" onclick="typeKey('c')">c</div>
+            <div class="key" id="key-v" onclick="typeKey('v')">v</div>
+            <div class="key" id="key-b" onclick="typeKey('b')">b</div>
+            <div class="key" id="key-n" onclick="typeKey('n')">n</div>
+            <div class="key" id="key-m" onclick="typeKey('m')">m</div>
+            <div class="key" id="key-comma" onclick="typeKey(',')">,</div>
+            <div class="key" id="key-period" onclick="typeKey('.')">.</div>
+            <div class="key" id="key-slash" onclick="typeKey('/')">/</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentText = "";
+
+    const specialKeyMap = {
+        ';': 'semicolon',
+        ',': 'comma',
+        '.': 'period',
+        '/': 'slash'
+    };
+
+    function typeKey(key) {
+        currentText += key;
+        document.getElementById("display").innerText = currentText;
+        document.getElementById("label-paper").innerText = currentText;
+    }
+
+    document.addEventListener('keydown', function(event) {
+        let key = event.key;
+        let idKey = key.toLowerCase();
+
+        if (specialKeyMap[key]) {
+            idKey = specialKeyMap[key];
+        }
+
+        const keyElement = document.getElementById(`key-${idKey}`);
+        if (keyElement) {
+            keyElement.classList.add('active');
+        }
+
+        if (key === 'Enter') {
+            currentText += '\n';
+        } else if (key === 'Backspace') {
+            currentText = currentText.slice(0, -1);
+        } else if (key.length === 1) {
+            currentText += key;
+        }
+
+        document.getElementById("display").innerText = currentText;
+        document.getElementById("label-paper").innerText = currentText;
+    });
+
+    document.addEventListener('keyup', function(event) {
+        let key = event.key;
+        let idKey = key.toLowerCase();
+
+        if (specialKeyMap[key]) {
+            idKey = specialKeyMap[key];
+        }
+
+        const keyElement = document.getElementById(`key-${idKey}`);
+        if (keyElement) {
+            keyElement.classList.remove('active');
+        }
+    });
+</script>
+
+</body>
+</html>
