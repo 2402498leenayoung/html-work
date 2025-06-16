@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <body>
+  
+    <style>
+      div {
+        display: grid;
+        grid-template: repeat(5, 50px) / repeat(3, 50px);
+      }
+
+      input {
+        width: 150px;
+        font-size: 20px;
+        text-align: center;
+      }
+    </style>
+
+    <input id="d" readonly>
+
+    <div>
+      <button onclick="f('1')">1</button>
+      <button onclick="f('2')">2</button>
+      <button onclick="f('3')">3</button>
+      <button onclick="f('4')">4</button>
+      <button onclick="f('5')">5</button>
+      <button onclick="f('6')">6</button>
+      <button onclick="f('7')">7</button>
+      <button onclick="f('8')">8</button>
+      <button onclick="f('9')">9</button>
+      <button onclick="f('*')">*</button>
+      <button onclick="f('0')">0</button>
+      <button onclick="f('#')">#</button>
+    </div>
+
+    <script>
+      function f(v) {
+        let n = d.value.replace(/-/g, '') + v;
+        if (n.length > 11) return;
+
+        d.value =
+          n.length > 7
+            ? n.slice(0, 3) + '-' + n.slice(3, 7) + '-' + n.slice(7)
+            : n.length > 3
+            ? n.slice(0, 3) + '-' + n.slice(3)
+            : n;
+      }
+    </script>
+    
+
+  </body>
+</html>

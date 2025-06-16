@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>이나영의 웹개발 홈페이지</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+      color: #333;
+      margin: 0;
+    }
+
+    nav {
+      background: #666; /* 더 연한 회색으로 변경 */
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav ul li a,
+    nav ul li span {
+      display: block;
+      padding: 12px 18px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav ul li:hover {
+      background: #777; /* 마우스 올렸을 때도 연하게 */
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #777; /* 드롭다운 배경 연하게 */
+      min-width: 160px;
+      z-index: 1000;
+    }
+
+    .dropdown-content a {
+      padding: 10px 15px;
+      display: block;
+      color: white;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #999; /* hover 시 더 연하게 */
+    }
+
+    nav ul li:hover .dropdown-content {
+      display: block;
+    }
+
+    main ul {
+      list-style: disc;
+      padding-left: 20px;
+    }
+
+    main ul li {
+      margin-bottom: 10px;
+    }
+
+    main ul li a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    main ul li a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 50px;
+      padding: 15px;
+      background: #222;
+      color: white;
+      text-align: center;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <ul>
+      <li><span>웹개발실습</span></li>
+
+      <li>
+        <a href="#">타자기</a>
+        <div class="dropdown-content">
+          <a href="타자기.html">영문 타자기</a>
+          <a href="한글타자기만들기.html">한글 타자기</a>
+        </div>
+      </li>
+
+      <li>
+        <a href="#">기능</a>
+        <div class="dropdown-content">
+          <a href="계산기 코드.html">계산기</a>
+          <a href="전화기코드.html">전화기</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>페이지 바로가기</h1>
+    <ul>
+      <li><a href="타자기.html">영문 타자기 페이지 바로가기</a></li>
+      <li><a href="한글타자기만들기.html">한글 타자기 페이지 바로가기</a></li>
+      <li><a href="계산기 코드.html">계산기 페이지 바로가기</a></li>
+      <li><a href="전화기코드.html">전화기 페이지 바로가기</a></li>
+    </ul>
+  </main>
+
+  <footer>
+    <p>한양여자대학교 빅데이터과 (2402498, 이나영)</p>
+    <p>© 2025 이나영의 웹사이트. 무단 복제 금지!</p>
+  </footer>
+
+</body>
+</html>

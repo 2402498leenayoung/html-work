@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>한글 타자기</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .typewriter {
+      width: 90%;
+      max-width: 800px;
+      background: #fff;
+      padding: 20px;
+      border: 2px solid #333;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .header p {
+      margin: 5px 0;
+    }
+    .display {
+      background-color: #f7f7f7;
+      padding: 10px;
+      border: 2px solid #333;
+      border-radius: 5px;
+      min-height: 50px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .label-paper {
+      background-color: #e0e0e0;
+      padding: 10px;
+      border-radius: 5px;
+      display: block;
+      margin: 20px 0;
+    }
+    .keyboard {
+      user-select: none;
+    }
+    .row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .key {
+      padding: 15px;
+      text-align: center;
+      background-color: lightgray;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 40px;
+      height: 40px;
+      font-weight: bold;
+      user-select: none;
+    }
+    .key:hover {
+      background-color: #ccc;
+    }
+    .row0 .key { background-color: #ffd3b6; }
+    .row1 .key { background-color: #ffcccb; }
+    .row2 .key { background-color: #cce7ff; }
+    .row3 .key { background-color: #d4f7b6; }
+
+    .active {
+      background-color: #e74c3c !important;
+      color: white;
+    }
+
+    /* 한글 모드에서도 숫자키는 항상 보여주기 */
+    .keyboard .row0 .key .en { display: inline; }
+    .keyboard.korean .row0 .key .kr { display: none; }
+
+    /* 나머지 키는 한글/영어 모드에 따라 표시 */
+    .keyboard:not(.korean) .row1 .key .en,
+    .keyboard:not(.korean) .row2 .key .en,
+    .keyboard:not(.korean) .row3 .key .en {
+      display: inline;
+    }
+    .keyboard:not(.korean) .row1 .key .kr,
+    .keyboard:not(.korean) .row2 .key .kr,
+    .keyboard:not(.korean) .row3 .key .kr {
+      display: none;
+    }
+
+    .keyboard.korean .row1 .key .en,
+    .keyboard.korean .row2 .key .en,
+    .keyboard.korean .row3 .key .en {
+      display: none;
+    }
+    .keyboard.korean .row1 .key .kr,
+    .keyboard.korean .row2 .key .kr,
+    .keyboard.korean .row3 .key .kr {
+      display: inline;
+    }
+  </style>
+</head>
+<body>
+
+
+<div class="typewriter">
+  <div class="header">
+    <p><strong>제작자:</strong> 이나영</p>
+    <p><strong>학번:</strong> 2402498</p>
+    <p><strong>소속:</strong> 한양여대 빅데이터과</p>
+  </div>
+
+  <div class="display" id="display"></div>
+  <label class="label-paper" id="label-paper"></label>
+
+  <div class="keyboard" id="keyboard">
+    <div class="row row0">
+      <div class="key" id="key-1"><span class="en">1</span></div>
+      <div class="key" id="key-2"><span class="en">2</span></div>
+      <div class="key" id="key-3"><span class="en">3</span></div>
+      <div class="key" id="key-4"><span class="en">4</span></div>
+      <div class="key" id="key-5"><span class="en">5</span></div>
+      <div class="key" id="key-6"><span class="en">6</span></div>
+      <div class="key" id="key-7"><span class="en">7</span></div>
+      <div class="key" id="key-8"><span class="en">8</span></div>
+      <div class="key" id="key-9"><span class="en">9</span></div>
+      <div class="key" id="key-0"><span class="en">0</span></div>
+    </div>
+    <div class="row row1">
+      <div class="key" id="key-q"><span class="en">Q</span><span class="kr">ㅂ</span></div>
+      <div class="key" id="key-w"><span class="en">W</span><span class="kr">ㅈ</span></div>
+      <div class="key" id="key-e"><span class="en">E</span><span class="kr">ㄷ</span></div>
+      <div class="key" id="key-r"><span class="en">R</span><span class="kr">ㄱ</span></div>
+      <div class="key" id="key-t"><span class="en">T</span><span class="kr">ㅅ</span></div>
+      <div class="key" id="key-y"><span class="en">Y</span><span class="kr">ㅛ</span></div>
+      <div class="key" id="key-u"><span class="en">U</span><span class="kr">ㅕ</span></div>
+      <div class="key" id="key-i"><span class="en">I</span><span class="kr">ㅑ</span></div>
+      <div class="key" id="key-o"><span class="en">O</span><span class="kr">ㅐ</span></div>
+      <div class="key" id="key-p"><span class="en">P</span><span class="kr">ㅔ</span></div>
+    </div>
+    <div class="row row2">
+      <div class="key" id="key-a"><span class="en">A</span><span class="kr">ㅁ</span></div>
+      <div class="key" id="key-s"><span class="en">S</span><span class="kr">ㄴ</span></div>
+      <div class="key" id="key-d"><span class="en">D</span><span class="kr">ㅇ</span></div>
+      <div class="key" id="key-f"><span class="en">F</span><span class="kr">ㄹ</span></div>
+      <div class="key" id="key-g"><span class="en">G</span><span class="kr">ㅎ</span></div>
+      <div class="key" id="key-h"><span class="en">H</span><span class="kr">ㅗ</span></div>
+      <div class="key" id="key-j"><span class="en">J</span><span class="kr">ㅓ</span></div>
+      <div class="key" id="key-k"><span class="en">K</span><span class="kr">ㅏ</span></div>
+      <div class="key" id="key-l"><span class="en">L</span><span class="kr">ㅣ</span></div>
+      <div class="key" id="key-semicolon"><span class="en">;</span><span class="kr">;</span></div>
+    </div>
+    <div class="row row3">
+      <div class="key" id="key-z"><span class="en">Z</span><span class="kr">ㅋ</span></div>
+      <div class="key" id="key-x"><span class="en">X</span><span class="kr">ㅌ</span></div>
+      <div class="key" id="key-c"><span class="en">C</span><span class="kr">ㅊ</span></div>
+      <div class="key" id="key-v"><span class="en">V</span><span class="kr">ㅍ</span></div>
+      <div class="key" id="key-b"><span class="en">B</span><span class="kr">ㅠ</span></div>
+      <div class="key" id="key-n"><span class="en">N</span><span class="kr">ㅜ</span></div>
+      <div class="key" id="key-m"><span class="en">M</span><span class="kr">ㅡ</span></div>
+      <div class="key" id="key-comma"><span class="en">,</span><span class="kr">,</span></div>
+      <div class="key" id="key-dot"><span class="en">.</span><span class="kr">.</span></div>
+      <div class="key" id="key-slash"><span class="en">/</span><span class="kr">/</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Hangul.js -->
+<script src="https://unpkg.com/hangul-js"></script>
+
+<script>
+  let currentText = "";
+  let isKorean = false;
+  let buffer = [];
+
+  const display = document.getElementById('display');
+  const labelPaper = document.getElementById('label-paper');
+  const keyboard = document.getElementById('keyboard');
+
+  const englishToKoreanMap = {
+    'q': 'ㅂ', 'w': 'ㅈ', 'e': 'ㄷ', 'r': 'ㄱ', 't': 'ㅅ',
+    'y': 'ㅛ', 'u': 'ㅕ', 'i': 'ㅑ', 'o': 'ㅐ', 'p': 'ㅔ',
+    'a': 'ㅁ', 's': 'ㄴ', 'd': 'ㅇ', 'f': 'ㄹ', 'g': 'ㅎ',
+    'h': 'ㅗ', 'j': 'ㅓ', 'k': 'ㅏ', 'l': 'ㅣ',
+    'z': 'ㅋ', 'x': 'ㅌ', 'c': 'ㅊ', 'v': 'ㅍ', 'b': 'ㅠ',
+    'n': 'ㅜ', 'm': 'ㅡ',
+    // 추가한 특수문자 매핑 (한글 모드에서도 그냥 그대로 찍히도록)
+    ',': ',', '.': '.', '/': '/', ';': ';'
+  };
+
+  function combineHangul(buffer) {
+    return Hangul.assemble(buffer);
+  }
+
+  function updateDisplay() {
+    display.textContent = currentText + combineHangul(buffer);
+    labelPaper.textContent = currentText + combineHangul(buffer);
+  }
+
+  function toggleLanguage() {
+    isKorean = !isKorean;
+    keyboard.classList.toggle('korean', isKorean);
+    buffer = [];
+    updateDisplay();
+  }
+
+  function handleKey(key) {
+    if (key === '.') {
+      toggleLanguage();
+      return;
+    }
+
+    if (key === 'Backspace') {
+      if (buffer.length > 0) {
+        buffer.pop();
+      } else {
+        currentText = currentText.slice(0, -1);
+      }
+      updateDisplay();
+      return;
+    }
+
+    if (key === ' ') {
+      if (buffer.length > 0) {
+        currentText += combineHangul(buffer);
+        buffer = [];
+      }
+      currentText += ' ';
+      updateDisplay();
+      return;
+    }
+
+    if (isKorean) {
+      // 한글 모드에서는 englishToKoreanMap에 있으면 조합, 없으면 그냥 붙임
+      const lowerKey = key.toLowerCase();
+      if (englishToKoreanMap.hasOwnProperty(lowerKey)) {
+        buffer.push(englishToKoreanMap[lowerKey]);
+      } else {
+        if (buffer.length > 0) {
+          currentText += combineHangul(buffer);
+          buffer = [];
+        }
+        currentText += key;
+      }
+    } else {
+      if (buffer.length > 0) {
+        currentText += combineHangul(buffer);
+        buffer = [];
+      }
+      currentText += key;
+    }
+    updateDisplay();
+  }
+
+  window.addEventListener('keydown', (e) => {
+    e.preventDefault();
+    handleKey(e.key);
+    highlightKey(e.key);
+  });
+
+  // 키보드 클릭 이벤트도 지원 (선택 사항)
+  keyboard.addEventListener('click', (e) => {
+    const keyDiv = e.target.closest('.key');
+    if (!keyDiv) return;
+    const enSpan = keyDiv.querySelector('.en');
+    const krSpan = keyDiv.querySelector('.kr');
+    if (!enSpan) return;
+
+    let keyVal;
+    if (isKorean) {
+      keyVal = krSpan ? krSpan.textContent : enSpan.textContent;
+      // toggle key는 '.'로 통일
+      if (keyVal === '.') {
+        toggleLanguage();
+        return;
+      }
+    } else {
+      keyVal = enSpan.textContent;
+    }
+    handleKey(keyVal);
+  });
+
+  function highlightKey(key) {
+    const keyIdMap = {
+      '1': 'key-1', '2': 'key-2', '3': 'key-3', '4': 'key-4', '5': 'key-5',
+      '6': 'key-6', '7': 'key-7', '8': 'key-8', '9': 'key-9', '0': 'key-0',
+      'q': 'key-q', 'w': 'key-w', 'e': 'key-e', 'r': 'key-r', 't': 'key-t',
+      'y': 'key-y', 'u': 'key-u', 'i': 'key-i', 'o': 'key-o', 'p': 'key-p',
+      'a': 'key-a', 's': 'key-s', 'd': 'key-d', 'f': 'key-f', 'g': 'key-g',
+      'h': 'key-h', 'j': 'key-j', 'k': 'key-k', 'l': 'key-l', ';': 'key-semicolon',
+      'z': 'key-z', 'x': 'key-x', 'c': 'key-c', 'v': 'key-v', 'b': 'key-b',
+      'n': 'key-n', 'm': 'key-m', ',': 'key-comma', '.': 'key-dot', '/': 'key-slash',
+      'Backspace': null, ' ': null
+    };
+
+    // 모두 초기화
+    document.querySelectorAll('.key').forEach(k => k.classList.remove('active'));
+    const lowerKey = key.toLowerCase();
+    if (keyIdMap[lowerKey]) {
+      const el = document.getElementById(keyIdMap[lowerKey]);
+      if (el) {
+        el.classList.add('active');
+        setTimeout(() => el.classList.remove('active'), 300);
+      }
+    }
+  }
+
+  // 초기 화면 언어 세팅
+  keyboard.classList.remove('korean');
+  updateDisplay();
+
+</script>
+
+</body>
+</html>
+

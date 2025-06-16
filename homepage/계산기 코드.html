@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { box-sizing: border-box; font-family: sans-serif; }
+    body { background: #222; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .calc { display: grid; grid-template-columns: repeat(4, 60px); gap: 10px; padding: 20px; }
+    .screen {
+      grid-column: span 4;
+      height: 60px;
+      background: black;
+      color: white;
+      font-size: 32px;
+      text-align: right;
+      padding: 10px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    button { height: 60px; width: 60px; font-size: 20px; border: none; border-radius: 50%; }
+    .num { background: #505050; color: white; }
+    .func { background: #a5a5a5; color: black; }
+    .op { background: orange; color: white; }
+    .eq { background: orange; color: white; border-radius: 30px; }
+    .zero { grid-column: span 2; width: 130px; border-radius: 30px; }
+  </style>
+</head>
+<body>
+  
+
+  <div class="calc">
+    <div id="screen" class="screen">0</div>
+    <button class="func" onclick="clearScreen()">AC</button>
+    <button class="func" onclick="toggleSign()">+/-</button>
+    <button class="func" onclick="percent()">%</button>
+    <button class="op" onclick="appendOperator('/')">÷</button>
+
+    <button class="num" onclick="appendNumber('7')">7</button>
+    <button class="num" onclick="appendNumber('8')">8</button>
+    <button class="num" onclick="appendNumber('9')">9</button>
+    <button class="op" onclick="appendOperator('*')">×</button>
+
+    <button class="num" onclick="appendNumber('4')">4</button>
+    <button class="num" onclick="appendNumber('5')">5</button>
+    <button class="num" onclick="appendNumber('6')">6</button>
+    <button class="op" onclick="appendOperator('-')">−</button>
+
+    <button class="num" onclick="appendNumber('1')">1</button>
+    <button class="num" onclick="appendNumber('2')">2</button>
+    <button class="num" onclick="appendNumber('3')">3</button>
+    <button class="op" onclick="appendOperator('+')">+</button>
+
+    <button class="num zero" onclick="appendNumber('0')">0</button>
+    <button class="num" onclick="appendNumber('.')">.</button>
+    <button class="eq" onclick="calculate()">=</button>
+  </div>
+
+  <script>
+    let expression = '';
+    const screen = document.getElementById('screen');
+
+    function updateScreen(value) {
+      screen.textContent = value.slice(0, 20); // 화면 최대 20글자
+    }
+
+    function appendNumber(num) {
+      if (expression === '0' && num !== '.') expression = '';
+      expression += num;
+      updateScreen(expression);
+    }
+
+    function appendOperator(op) {
+      const last = expression.slice(-1);
+      if ("+-*/".includes(last)) return; // 중복 연산자 방지
+      if (expression === '') return;
+      expression += op;
+      updateScreen(expression);
+    }
+
+    function calculate() {
+      try {
+        const result = eval(expression.replace(/×/g, '*').replace(/÷/g, '/'));
+        expression = result.toString();
+        updateScreen(expression);
+      } catch {
+        updateScreen('Error');
+        expression = '';
+      }
+    }
+
+    function clearScreen() {
+      expression = '';
+      updateScreen('0');
+    }
+
+    function toggleSign() {
+      if (!expression) return;
+      try {
+        const value = eval(expression);
+        expression = (-value).toString();
+        updateScreen(expression);
+      } catch {
+        updateScreen('Error');
+        expression = '';
+      }
+    }
+
+    function percent() {
+      if (!expression) return;
+      try {
+        const value = eval(expression);
+        expression = (value / 100).toString();
+        updateScreen(expression);
+      } catch {
+        updateScreen('Error');
+        expression = '';
+      }
+    }
+  </script>
+  
+
+</body>
+</html>
